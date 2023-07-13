@@ -1,13 +1,16 @@
 package co.istad.sb5datajpa;
 
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.*;
 
 import java.util.List;
 
 @Entity
 @Table(name = "users")
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class User {
 
     @Id
@@ -20,11 +23,21 @@ public class User {
     @Column(name = "name", length = 50)
     private String displayName;
 
-    @Column(nullable = false)
+    @Column(columnDefinition = "VARCHAR(100) NOT NULL UNIQUE")
     private String biography;
 
-    @ManyToOne
-    @JoinColumn(name = "role_id")
+
+//    @ToString.Exclude
+//    @ManyToMany(fetch = FetchType.EAGER)
+//    @JoinTable(name = "users_registration",
+//            joinColumns=@JoinColumn(name = "user_id"),
+//            inverseJoinColumns = @JoinColumn(name = "role_id") )
+//    private List <Role> roles;
+
+    @OneToOne
+
     private Role role;
+
+
 
 }

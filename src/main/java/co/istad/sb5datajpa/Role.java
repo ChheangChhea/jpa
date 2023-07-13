@@ -1,15 +1,31 @@
 package co.istad.sb5datajpa;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-import lombok.Data;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import jakarta.persistence.*;
+import lombok.*;
+
+import java.util.List;
 
 @Entity
 @Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "roles")
 public class Role {
 
     @Id
-    private Integer role_id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private String name;
+
+//   @ToString.Exclude
+//    @JsonBackReference
+//    @ManyToMany (mappedBy = "roles")
+//    private List<User> users;
+
+//    @OneToOne
+//    private User user;
+
 }

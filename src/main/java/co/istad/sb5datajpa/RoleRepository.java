@@ -1,8 +1,9 @@
 package co.istad.sb5datajpa;
 
+
 import org.springframework.data.repository.CrudRepository;
 
+public interface RoleRepository extends CrudRepository<Role,Long> {
 
-public interface UserRepository extends CrudRepository <User,Integer> {
 
 }
