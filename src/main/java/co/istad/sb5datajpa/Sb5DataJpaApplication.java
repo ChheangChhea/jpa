@@ -15,41 +15,55 @@ import java.util.List;
 
 @SpringBootApplication
 @RequiredArgsConstructor
-public class Sb5DataJpaApplication {
+public class Sb5DataJpaApplication implements CommandLineRunner {
 private final RoleRepository roleRepository;
 private final UserRepository userRepository;
     public static void main(String[] args) {
         SpringApplication.run(Sb5DataJpaApplication.class, args);
     }
-//
-//    @Override
-//    public void run(String... args) throws Exception {
-//
-//        Role admin = Role.builder()
-//                .name("ADMIN")
-//                .build();
-//
-//        roleRepository.save(admin);
-//
-//        User user1 = User.builder()
-//                .username("Chheangchhea")
-//                .displayName("chhea")
-//                .roles(List.of(admin))
-//                .build();
-//        userRepository.save(user1);
-//
-//        User user2 = User.builder()
-//                .username("Chheangchhea")
-//                .displayName("chhea")
-//                .roles(List.of(admin))
-//                .build();
-//        userRepository.save(user2);
-//
-//        User user3 = User.builder()
-//                .username("Chheangchhea")
-//                .displayName("chhea")
-//                .roles(List.of(admin))
-//                .build();
-//         userRepository.save(user3);
-//    }
+
+    @Override
+    public void run(String... args) throws Exception {
+
+        Role admin= Role.builder()
+                .name("ADMIN")
+                .build();
+
+        Role editor= Role.builder()
+                .name("EDITOR")
+                .build();
+
+        Role subscriber = Role.builder()
+                .name("SUBSCRIBER")
+                .build();
+
+        roleRepository.save(admin);
+        roleRepository.save(editor);
+        roleRepository.save(subscriber);
+
+
+        User user= User.builder()
+                .username("Chheangchhea")
+                .displayName("Chheang Chhea")
+                .biography("Hello")
+                .roles(List.of(admin))
+                .build();
+        userRepository.save(user);
+
+        User user2= User.builder()
+                .username("Chhea")
+                .displayName("Chhea")
+                .biography("Hello every ")
+                .roles(List.of(admin,editor))
+                .build();
+        userRepository.save(user2);
+
+       Iterable <User> users=userRepository.findAll();
+      users.forEach(u-> {
+          System.out.println(u.getUsername());
+          System.out.println(u.getRoles().get(0).getName());
+      });
+
+
+    }
 }

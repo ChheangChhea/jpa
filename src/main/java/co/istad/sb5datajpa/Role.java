@@ -16,16 +16,17 @@ public class Role {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
     private String name;
 
-//   @ToString.Exclude
-//    @JsonBackReference
-//    @ManyToMany (mappedBy = "roles")
-//    private List<User> users;
+   @ToString.Exclude
+    @JsonBackReference
+    @ManyToMany (mappedBy = "roles")
+//   @JoinTable(name = "users_registration",
+//           joinColumns=@JoinColumn(name = "role_id"),
+//           inverseJoinColumns = @JoinColumn(name = "user_id") )
+    private List<User> users;
 
-//    @OneToOne
-//    private User user;
 
 }

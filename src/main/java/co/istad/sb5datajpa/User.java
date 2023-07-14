@@ -27,14 +27,12 @@ public class User {
     private String biography;
 
 
-    @ToString.Exclude
+  //  @ToString.Exclude
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "users_registration",
             joinColumns=@JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id") )
     private List <Role> roles;
 
-//    @ManyToMany
-//    @JoinColumn (name = "role_key",nullable = false)
-//    private List<Role> role;
+
 }
