@@ -1,5 +1,6 @@
-package co.istad.sb5datajpa;
+package co.istad.sb5datajpa.role;
 
+import co.istad.sb5datajpa.user.User;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;

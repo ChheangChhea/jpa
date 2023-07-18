@@ -1,8 +1,9 @@
 package co.istad.sb5datajpa;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.NoArgsConstructor;
+import co.istad.sb5datajpa.role.Role;
+import co.istad.sb5datajpa.role.RoleRepository;
+import co.istad.sb5datajpa.user.User;
+import co.istad.sb5datajpa.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -43,20 +44,33 @@ private final UserRepository userRepository;
 
 
         User user= User.builder()
+                .isdeleted(false)
                 .username("Chheangchhea")
                 .displayName("Chheang Chhea")
-                .biography("Hello")
+                .biography("Hello yy")
                 .roles(List.of(admin))
                 .build();
         userRepository.save(user);
 
         User user2= User.builder()
+
                 .username("Chhea")
                 .displayName("Chhea")
                 .biography("Hello every ")
-                .roles(List.of(admin,editor))
+                .isdeleted(true)
+                .roles(List.of(subscriber))
                 .build();
         userRepository.save(user2);
+
+        User user3= User.builder()
+
+                .username("Dara")
+                .displayName("Chhea")
+                .isdeleted(false)
+                .biography("Hello every today ")
+                .roles(List.of(admin,editor))
+                .build();
+        userRepository.save(user3);
 
        Iterable <User> users=userRepository.findAll();
       users.forEach(u-> {

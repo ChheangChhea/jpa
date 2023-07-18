@@ -1,7 +1,10 @@
-package co.istad.sb5datajpa;
+package co.istad.sb5datajpa.role;
 
+import co.istad.sb5datajpa.role.Role;
+import co.istad.sb5datajpa.role.RoleRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -14,4 +17,13 @@ public class RoleRestController {
     public Iterable<Role>findAll(){
         return roleRepository.findAll();
     }
+
+
+   @GetMapping("/name")
+    public Role findByName(@PathVariable String name){
+        return roleRepository.findByName(name).orElseThrow();
+   }
+
+
+
 }

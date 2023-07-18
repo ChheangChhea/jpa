@@ -1,9 +1,11 @@
-package co.istad.sb5datajpa;
+package co.istad.sb5datajpa.user;
 
+import co.istad.sb5datajpa.role.Role;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @Entity
 @Table(name = "users")
@@ -17,15 +19,29 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+
+    private UUID uuid;
+
+
+    private String email;
+
+    private String phone;
+
+    @Column(name = "is_deleted")
+    private Boolean isDeleted;
+
+
     @Column(unique = true, nullable = false, length = 50)
     private String username;
 
-    @Column(name = "name", length = 50)
+
+    @Column(name = "display_name", length = 50)
     private String displayName;
 
     @Column(columnDefinition = "VARCHAR(100) NOT NULL UNIQUE")
     private String biography;
 
+    private Boolean isdeleted;
 
   //  @ToString.Exclude
     @ManyToMany(fetch = FetchType.EAGER)
